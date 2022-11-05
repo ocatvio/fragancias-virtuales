@@ -48,7 +48,7 @@ const tbody = data?.allProducts.map(p => {
       </div>
 
 
-      <TableCar data={data?.allProducts} color={'text-purple-600'}  thead={thead} />
+      <TableCar data={data?.allProducts} color={'text-purple-600'}  theade={thead} />
     </div>
   )
 }

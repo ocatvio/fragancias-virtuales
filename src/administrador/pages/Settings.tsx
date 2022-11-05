@@ -26,7 +26,7 @@ export const Settings = () => {
       </div>
 
       <div className="my-2">
-        <TableCar color={'text-violet-700'} />
+        {/* <TableCar color={'text-violet-700'} /> */}
       </div>
     </div>
   )

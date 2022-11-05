@@ -45,7 +45,7 @@ export const UserPage = (props: Props) => {
       </div>
 
       <div className="my-2">
-        <TableCar data={data?.data}  color={'text-violet-700'}  thead={thead}/>
+        <TableCar data={data?.data}  color={'text-violet-700'}  theade={thead}/>
       </div>
     </div>
   )

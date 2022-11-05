@@ -38,7 +38,7 @@ export const LoginPage = () => {
 
     const userNew = validateUser(user,data?.data)
 
-    if(userNew?.length ==0){
+    if(userNew !== undefined){
       return;
     }
 
@@ -49,7 +49,7 @@ export const LoginPage = () => {
 
     // let lastPath = localStorage.getItem('lastPath')
 
-    dispatch(login(authUser))
+    dispatch(login(authUser as any))
 
     // lastPath= (user.name ==='admin')? '/dashboard':lastPath
 

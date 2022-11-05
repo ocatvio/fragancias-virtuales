@@ -35,7 +35,7 @@ export const ShopPage = (props: Props) => {
         </div>
       </div>
 
-      <TableCar color={'text-amber-800'} />
+      {/* <TableCar color={'text-amber-800'} /> */}
     </div>
   )
 }

@@ -8,7 +8,7 @@ import ItemTable from './ItemTable';
 type props = {
   color: string,
   data?: Array<T.User.Request> | Array<T.Product.Request>,
-  thead: Array<string>,
+  theade: Array<string>,
 
 }
 
@@ -21,7 +21,7 @@ export const TableCar = (props: props) => {
         <thead>
           <tr>
             {
-              props.thead.map(th => (
+              props.theade.map(th => (
                 <th key={th} className={`px-2 ${props.color} capitalize py-3 text-sm  whitespace-nowrap font-semibold text-left`}>
                   {th}
                 </th>
