@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
+
 import { useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
 // import { AuthContext } from "../context/AuthContext";
-import perfil from '../../assets/perfil.jpg'
+
 import { validateUser } from "../helpers/validateUser";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useGetUserQuery } from "../../feature";
@@ -38,7 +38,7 @@ export const LoginPage = () => {
 
     const userNew = validateUser(user,data?.data)
 
-    if(userNew !== undefined){
+    if(userNew?.length ==0){
       return;
     }
 
