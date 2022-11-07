@@ -20,7 +20,7 @@ export const Cars = (props: Props) => {
 
 
     (uniqueId.length)
-      ? fetch("http://localhost:3000/product/" + uniqueId)
+      ? fetch("https://back-perfumeria-production-23ad.up.railway.app/product/" + uniqueId)
         .then(response => response.json())
         .then(json => setProducInfo((json.allProducts) ? json.allProducts : []))
       : setProducInfo([])
