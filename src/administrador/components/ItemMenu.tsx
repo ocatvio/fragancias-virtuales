@@ -7,7 +7,8 @@ import * as T from '../../types/index'
 
 type Props = {
     items:Array<T.Menu.menuItem>,
-    response:boolean
+    response:boolean,
+    
 }
 
 export const ItemMenu = (props: Props) => {
@@ -19,8 +20,6 @@ export const ItemMenu = (props: Props) => {
   const handleLogout = (e:React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 
     e.preventDefault()
-
-    console.log("loagout")
 
     dispatch(logout())
 
@@ -35,10 +34,11 @@ export const ItemMenu = (props: Props) => {
 
   const path = useLocation().pathname
   return (
-    <div>
+    <div className={`${props.response ? "": "md:hidden sm:hidden lg:block hidden"}`}>
          <ul className="pt-6 ">
             {  props.items.map((item) => (
               <NavLink
+        
                 to={item.tor}
                 key={item.title}
                 className={`${path === item.tor ?"text-emerald-500":"text-gray-500"}  shadow-md   flex items-center p-2 my-8 text-sm font-normal duration-300  gap-x-4 rounded-lg dark:text-white hover:bg-fondoCard2 cursor-pointer  dark:hover:bg-gray-700  ${
@@ -47,7 +47,7 @@ export const ItemMenu = (props: Props) => {
               >
                 {item.icono}
                 <p
-                  className={`${!props.response && "hidden origin-left duration-300"}`}
+                  className={`${props.response && " origin-left duration-300"}`}
                 >
                   {item.title}
                 </p>{" "}

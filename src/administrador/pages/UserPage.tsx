@@ -34,11 +34,11 @@ export const UserPage = (props: Props) => {
 
       </div>
 
-      <div className="flex justify-between px-7">
+      <div className="lg:flex justify-between px-7">
         <div className={`flex items-center  rounded-xl bg-violet-700 shadow-violet-700 text-white  dark:bg-white py-3 px-6 m-4 shadow-md`}>
           <Link to="/addUser" className="flex items-center"><UserPlusIcon className='w-5 h-5 mr-4 text-white'></UserPlusIcon> <p>agregar Usuario</p></Link>
         </div>
-        <div className='flex items-center  rounded-xl dark:bg-white py-3 px-6 m-4 shadow-md'>
+        <div className='flex items-center  rounded-xl dark:bg-white py-3 px-6 lg:m-4 shadow-md'>
           <label htmlFor='search'><MagnifyingGlassIcon className='w-5 h-5 mr-4 text-gray-500'></MagnifyingGlassIcon></label>
           <input id='search' type="text" placeholder='buscar producto' className='text-sm text-gray-500 w-full outline-none' />
         </div>

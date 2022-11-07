@@ -30,7 +30,7 @@ export const PerfumeriaRouter = (props: Props) => {
 
     return (
         <>
-           
+
             {/* admin */}
 
 
@@ -38,25 +38,25 @@ export const PerfumeriaRouter = (props: Props) => {
             {
                 auth.length !== 0
                     ?
-                    <div className='flex'>
-                         <Sidebar />
+                    <div className='lg:flex'>
+                        <Sidebar />
 
-                         <Routes>
-                        <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/shop" element={<ShopPage />} />
-                        <Route path="/users" element={<UserPage />} />
-                        <Route path="/product" element={<Product />} />
-                        <Route path="/deudores" element={<Settings />} />
+                        <Routes>
+                            <Route path="/dashboard" element={<Dashboard />} />
+                            <Route path="/shop" element={<ShopPage />} />
+                            <Route path="/users" element={<UserPage />} />
+                            <Route path="/product" element={<Product />} />
+                            <Route path="/deudores" element={<Settings />} />
 
-                        <Route path="/addProduct" element={<ProductPage />} />
-                        <Route path="/addUser" element={<UserRegisterPage />} />
-                        <Route path="/addDeuda" element={<DeudaRegisterPage />} />
-                        {/* <Route path="/product" element={<Detail />} /> */}
-                        <Route path="/" element={<Navigate to="/dashboard" />} />
-                    </Routes>
-                         
+                            <Route path="/addProduct" element={<ProductPage />} />
+                            <Route path="/addUser" element={<UserRegisterPage />} />
+                            <Route path="/addDeuda" element={<DeudaRegisterPage />} />
+                            {/* <Route path="/product" element={<Detail />} /> */}
+                            <Route path="/" element={<Navigate to="/dashboard" />} />
+                        </Routes>
+                       
                     </div>
-                   
+
                     :
                     <div>
                         <Routes>

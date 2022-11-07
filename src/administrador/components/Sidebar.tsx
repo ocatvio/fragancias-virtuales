@@ -1,4 +1,4 @@
-import { ArrowLeftCircleIcon } from "@heroicons/react/24/solid";
+import { ArrowLeftCircleIcon,Bars3Icon } from "@heroicons/react/24/outline";
 import { useState } from "react";
 import { menu } from "../data/menu";
 import { ItemMenu } from "./ItemMenu";
@@ -24,16 +24,16 @@ export const Sidebar = (props: Props) => {
   return (
     <div className="flex bg-white">
       <div
-        className={` ${response ? "w-64" : "w-20"
-          } duration-300 h-screen shadow-xl relative p-5 pt-6    rounded dark:bg-gray-800`}
+        className={` ${response ? "lg:w-64 w-full h-screen" : "w-full lg:w-64 lg:h-full h-20"
+          } duration-300   shadow-xl relative p-5 pt-6    rounded dark:bg-gray-800`}
       >
-        <ArrowLeftCircleIcon
+        <Bars3Icon
           onClick={responseDashboar}
-          className={`absolute w-6 h-6 cursor-pointer -right-3 top-7 text-hover-text bg-gray-400 rounded-full ${!response && "rotate-180"
+          className={`lg:hidden  absolute w-6 h-6 mx-6 cursor-pointer -right-3 top-9 text-hover-text  ${!response && "rotate-180"
             }`}
         />
 
-        <div className="flex gap-x-4 items-center">
+        <div className="flex gap-x-4 items-center ">
           <div>
             <img
               src={logo}
@@ -50,7 +50,7 @@ export const Sidebar = (props: Props) => {
             Administrador
           </h1>
         </div>
-        <ItemMenu items={menu} response={response} />
+        <ItemMenu items={menu} response={response}  />
 
       </div>
     </div>

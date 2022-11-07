@@ -1,12 +1,12 @@
 
 import { useNavigate } from "react-router-dom";
 import { useForm } from "../../hooks/useForm";
-// import { AuthContext } from "../context/AuthContext";
-
 import { validateUser } from "../helpers/validateUser";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
 import { useGetUserQuery } from "../../feature";
 import { login } from "../../feature/user/authUser_slice";
+
+import logo from  '../../assets/lgo.png'
 
 export const LoginPage = () => {
   const {formState,onInputChange}=useForm({
@@ -71,7 +71,7 @@ export const LoginPage = () => {
     <div className="lg:mt-10 ">
     <form onSubmit={onLogin}  className="flex flex-col lg:h-5/6 lg:w-3/12 m-auto h-auto  bg-whiteC rounded-lg shadow-lg px-4 py-14">
       
-      <img className="m-auto mb-4 rounded-full w-36 h-36 object-cover" src="https://c.tenor.com/5Jc-2qvQCx4AAAAi/wedang-pokak-cup.gif" alt="foto perfil" />
+      <img className="m-auto mb-4 rounded-full w-36 h-36 object-cover" src={logo} alt="foto perfil" />
      
       <input
         type="text"
