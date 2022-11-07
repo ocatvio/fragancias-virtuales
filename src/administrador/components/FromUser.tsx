@@ -49,7 +49,7 @@ export const FromUser = (props: Props) => {
     }
 
     return (
-        <div className='m-10 shadow-xl px-10 py-10  rounded-lg w-auto'>
+        <div className='lg:m-10 shadow-xl px-10 py-10  rounded-lg w-auto'>
 
             <form onSubmit={handleSubmit}>
                 <h3 className='capitalize text-gray-600 font-semibold text-center pb-4 my-6'>Registrar información del cliente</h3>
