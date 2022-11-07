@@ -5,7 +5,7 @@ type Props = {}
 
 export const ProductPage = (props: Props) => {
   return (
-   <div className='w-full'>
+   <div className=''>
     <FormProduct/>
    </div>
   )

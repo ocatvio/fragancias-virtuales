@@ -56,7 +56,7 @@ export const FormProduct = (props: Props) => {
   return (
 
 
-    <div className='m-28 shadow-md px-10 py-10 border-y-4  rounded-lg w-auto'>
+    <div className=' shadow-md px-10 py-10 border-y-4  rounded-lg w-auto'>
 
      <form onSubmit={handleOnsubmit}>
      <h3 className='capitalize text-gray-600 text-center pb-4 my-6'>Registrar información del producto</h3>
