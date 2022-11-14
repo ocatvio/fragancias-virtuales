@@ -50,7 +50,7 @@ export const Sidebar = (props: Props) => {
             Administrador
           </h1>
         </div>
-        <ItemMenu items={menu} response={response}  />
+        <ItemMenu items={menu} response={response} responseDashboar={responseDashboar}  />
 
       </div>
     </div>

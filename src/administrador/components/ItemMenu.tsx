@@ -8,6 +8,7 @@ import * as T from '../../types/index'
 type Props = {
     items:Array<T.Menu.menuItem>,
     response:boolean,
+    responseDashboar:Function
     
 }
 
@@ -27,9 +28,11 @@ export const ItemMenu = (props: Props) => {
       replace:true
     })
 
+  }
 
-
-
+  const reponseDesing = () => {
+    
+    props.responseDashboar()
   }
 
   const path = useLocation().pathname
@@ -40,6 +43,7 @@ export const ItemMenu = (props: Props) => {
               <NavLink
         
                 to={item.tor}
+                onClick={reponseDesing}
                 key={item.title}
                 className={`${path === item.tor ?"text-emerald-500":"text-gray-500"}  shadow-md   flex items-center p-2 my-8 text-sm font-normal duration-300  gap-x-4 rounded-lg dark:text-white hover:bg-fondoCard2 cursor-pointer  dark:hover:bg-gray-700  ${
                   item.gap ? "mt-20 " : "mt-2"

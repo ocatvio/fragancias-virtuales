@@ -8,7 +8,7 @@ import { ReactNode } from "react";
 type props = {
   titulo:string,
   color:string,
-  numero:string,
+  numero?:string,
   visitas:string,
   fecha:string,
   w:string,

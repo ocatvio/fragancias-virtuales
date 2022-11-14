@@ -33,7 +33,7 @@ const tbody = data?.allProducts.map(p => {
       <div className=" w-full h-56 flex justify-end ">
 
         <div className="flex lg:flex-row p-8">
-          <StatuCard icono={<UsersIcon className="  w-9  text-white " />} mtt={'-mt-12'} w={'w-56'} h={'h-40'} titulo={'Produtos'} color={'bg-purple-600'} numero={'350,896'} visitas={'31.15'} fecha={'desde mes pasado'} />
+          <StatuCard icono={<UsersIcon className="  w-9  text-white " />} mtt={'-mt-12'} w={'w-56'} h={'h-40'} titulo={'Produtos'} color={'bg-purple-600'} numero={data?.allProducts.length.toString()} visitas={'31.15'} fecha={'desde mes pasado'} />
         </div>
 
       </div>
