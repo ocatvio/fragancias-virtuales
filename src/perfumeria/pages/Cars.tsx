@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
-import { UserIcon,PhoneIcon,AtSymbolIcon } from '@heroicons/react/24/outline'
+import React, { useEffect, useState } from 'react'
+import { UserIcon, PhoneIcon, AtSymbolIcon } from '@heroicons/react/24/outline'
 import * as T from '../../types/index'
 import { useAppSelector } from '../../app/hooks'
+import { useForm } from '../../hooks/useForm'
+import { useAddBuyMutation } from '../../feature/buy/buy_api_slice'
 
 type Props = {}
 
@@ -11,8 +13,20 @@ export const Cars = (props: Props) => {
 
   const buys = useAppSelector(state => state.buy)
 
+  const [postBuy, resp] = useAddBuyMutation();
+
+  const { formState, onInputChange } = useForm({
+    name: '',
+    phone: '',
+    address: '',
+    email: ''
+  })
+
   const [producInfo, setProducInfo] = useState(initalState)
   const uniqueId = [... new Set(buys)]
+
+
+  const { name, phone, address, email } = formState
 
 
 
@@ -39,6 +53,58 @@ export const Cars = (props: Props) => {
   }
 
   let total = subtotal + transport;
+
+
+
+  const handleBuy = async (e: React.FormEvent<HTMLFormElement>) => {
+
+    e.preventDefault()
+
+
+    let order: Array<{}> = []
+
+    producInfo.map(p => {
+
+
+      let newPro = {
+        // codigo:p.id,
+        name: p.name,
+        quantity: buys.filter(id => id === p.id).length
+      }
+
+      order.push(newPro)
+
+
+
+
+
+
+      console.log(newPro)
+
+
+
+
+
+    })
+
+
+    const buy = {
+      user: {
+        name,
+        phone,
+        address,
+        email
+      },
+      buy: order
+
+    }
+
+    if (name != '' && phone !== '') {
+      postBuy(buy).unwrap
+    }
+
+
+  }
 
 
 
@@ -75,56 +141,86 @@ export const Cars = (props: Props) => {
 
         {
           producInfo.length && (
-            <div className='lg:px-16 lg:my-5'>
-              <div className='m-4 shadow-lg px-5 py-2  rounded-lg'>
+            <form onSubmit={handleBuy}>
+              <div className='lg:px-16 lg:my-5'>
+                <div className='m-4 shadow-lg px-5 py-2  rounded-lg'>
 
-              <h3 className='capitalize text-gray-600 text-center pb-4'>información personal</h3>
-                <div className='flex items-center w-full rounded-xl dark:bg-white py-3 px-2 shadow-sm my-3'>
-                  <label htmlFor='search'><UserIcon className='w-5 h-5 mr-4 text-gray-500'></UserIcon></label>
-                  <input id='search' type="text" placeholder='nombre completo' className='text-sm capitalize text-gray-500 w-full outline-none' />
+                  <h3 className='capitalize text-gray-600 text-center pb-4'>información personal</h3>
+                  <div className='flex items-center w-full rounded-xl dark:bg-white py-3 px-2 shadow-sm my-3'>
+                    <label htmlFor='name'><UserIcon className='w-5 h-5 mr-4 text-gray-500'></UserIcon></label>
+                    <input required id='name' name='name' value={name} onChange={onInputChange} type="text" placeholder='nombre completo' className='text-sm capitalize text-gray-500 w-full outline-none' />
+                  </div>
+                  <div className='flex items-center w-full rounded-xl dark:bg-white py-3 px-2 shadow-sm my-3'>
+                    <label htmlFor='phone'><PhoneIcon className='w-5 h-5 mr-4 text-gray-500'></PhoneIcon></label>
+                    <input required id='phone' name='phone' value={phone} onChange={onInputChange} type="text" placeholder='telefono' className='text-sm capitalize text-gray-500 w-full outline-none' />
+                  </div>
+                  <div className='flex items-center w-full rounded-xl dark:bg-white py-3 px-2 shadow-sm my-3'>
+                    <label htmlFor='email'><AtSymbolIcon className='w-5 h-5 mr-4 text-gray-500'></AtSymbolIcon></label>
+                    <input required id='email' name='email' value={email} onChange={onInputChange} type="text" placeholder='correo electronico' className='text-sm capitalize text-gray-500 w-full outline-none' />
+                  </div>
+                  <div className='flex items-center w-full rounded-xl dark:bg-white py-3 px-2 shadow-sm my-3'>
+                    <label htmlFor='address'><UserIcon className='w-5 h-5 mr-4 text-gray-500'></UserIcon></label>
+                    <input required id='address' name='address' value={address} onChange={onInputChange} type="text" placeholder='dirección' className='text-sm capitalize text-gray-500 w-full outline-none' />
+                  </div>
+
                 </div>
-                <div className='flex items-center w-full rounded-xl dark:bg-white py-3 px-2 shadow-sm my-3'>
-                  <label htmlFor='search'><PhoneIcon className='w-5 h-5 mr-4 text-gray-500'></PhoneIcon></label>
-                  <input id='search' type="text" placeholder='telefono' className='text-sm capitalize text-gray-500 w-full outline-none' />
+
+                <div className='m-4 px-8 border rounded-md shadow-md'>
+
+
+                  <div className='flex my-3'>
+                    <h3 className='grow font-bold text-gray-400'>Subtotal:</h3>
+                    <h3 className='font-semibold'>${subtotal}</h3>
+                  </div>
+                  <div className='flex my-3'>
+                    <h3 className='grow font-bold text-gray-400'>Transporte:</h3>
+                    <h3 className='font-semibold'>${transport}</h3>
+                  </div>
+                  <div className='flex my-3 border-t pt-2 border-dashed border-emerald-500'>
+                    <h3 className='grow font-bold text-gray-400'>Total:</h3>
+                    <h3 className='font-semibold'>${total}</h3>
+                  </div>
                 </div>
-                <div className='flex items-center w-full rounded-xl dark:bg-white py-3 px-2 shadow-sm my-3'>
-                  <label htmlFor='search'><AtSymbolIcon className='w-5 h-5 mr-4 text-gray-500'></AtSymbolIcon></label>
-                  <input id='search' type="text" placeholder='correo electronico' className='text-sm capitalize text-gray-500 w-full outline-none' />
-                </div>
-                <div className='flex items-center w-full rounded-xl dark:bg-white py-3 px-2 shadow-sm my-3'>
-                  <label htmlFor='search'><UserIcon className='w-5 h-5 mr-4 text-gray-500'></UserIcon></label>
-                  <input id='search' type="text" placeholder='dirección' className='text-sm capitalize text-gray-500 w-full outline-none' />
-                </div>
+
+                {/* <div className='flex justify-center w-full'>
+                  <button className=' rounded-full font-bold bg-emerald-500 px-8   text-white  py-3 my-6  shadow-emerald-200 shadow-lg'>Pagar ${total}</button>
+                </div> */}
+                <button className='btnsend m-auto bg-emerald-500 text-white py-3 px-5 pl-1 flex items-center rounded-full overflow-hidden'>
+                  <div className="svg-wrapper-1">
+                    <div className="svg-wrapper">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <path fill="none" d="M0 0h24v24H0z"></path>
+                        <path fill="currentColor" d="M1.946 9.315c-.522-.174-.527-.455.01-.634l19.087-6.362c.529-.176.832.12.684.638l-5.454 19.086c-.15.529-.455.547-.679.045L12 14l6-8-8 6-8.054-2.685z"></path>
+                      </svg>
+                    </div>
+                  </div>
+                  <span className='espanb'>Solictar Pedido</span>
+                </button>
 
               </div>
-
-              <div className='m-4 px-8 border rounded-md shadow-md'>
-                
-                
-                <div className='flex my-3'>
-                  <h3 className='grow font-bold text-gray-400'>Subtotal:</h3>
-                  <h3 className='font-semibold'>${subtotal}</h3>
-                </div>
-                <div className='flex my-3'>
-                  <h3 className='grow font-bold text-gray-400'>Transporte:</h3>
-                  <h3 className='font-semibold'>${transport}</h3>
-                </div>
-                <div className='flex my-3 border-t pt-2 border-dashed border-emerald-500'>
-                  <h3 className='grow font-bold text-gray-400'>Total:</h3>
-                  <h3 className='font-semibold'>${total}</h3>
-                </div>
-              </div>
-
-             <div className='flex justify-center w-full'>
-             <button className=' rounded-full font-bold bg-emerald-500 px-8   text-white  py-3 my-6  shadow-emerald-200 shadow-lg'>Pagar ${total}</button>
-             </div>
-
-            </div>
+            </form>
           )
         }
 
       </div>
+
+
+
+
     </div>
   )
 }
+
+// font-family: inherit;
+// font-size: 20px;
+// background: royalblue;
+// color: white;
+// padding: 0.7em 1em;
+// padding-left: 0.9em;
+// display: flex;
+// align-items: center;
+// border: none;
+// border-radius: 16px;
+// overflow: hidden;
+// transition: all 0.2s;
 

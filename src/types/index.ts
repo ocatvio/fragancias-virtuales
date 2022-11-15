@@ -22,13 +22,14 @@ export namespace Product {
 }
 
 export namespace User {
+
     export interface Request {
         id: string,
         name: string,
         phone: string,
         address: number,
         email:string,
-        image: {
+        image?: {
             public_id: string,
             secure_url: string
         }
@@ -43,12 +44,14 @@ export namespace User {
 
 
 export namespace Menu {
+
     export interface menuItem {
         title: string,
         tor: string,
         icono: JSX.Element,
         gap?: boolean,
-      }
+    }
+
 }
 
 
@@ -56,3 +59,6 @@ export interface auth {
     login:"[Auth] login",
     logout:'[Auth] logout'
 } 
+
+
+
