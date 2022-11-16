@@ -12,10 +12,14 @@ const buySlice = createSlice({
         addCar(state,action:PayloadAction<string>){
             console.log("buy add ")
             state.push(action.payload)
+        },
+        clearCar(state){
+            state.length=0
         }
+
     }
 })
 
 
-export const {addCar} = buySlice.actions
+export const {addCar,clearCar} = buySlice.actions
 export default buySlice.reducer

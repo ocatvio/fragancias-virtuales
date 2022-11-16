@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { UserIcon, PhoneIcon, AtSymbolIcon } from '@heroicons/react/24/outline'
+import { UserIcon, PhoneIcon, AtSymbolIcon,ExclamationCircleIcon } from '@heroicons/react/24/outline'
 import * as T from '../../types/index'
-import { useAppSelector } from '../../app/hooks'
+import { useAppSelector,useAppDispatch } from '../../app/hooks'
 import { useForm } from '../../hooks/useForm'
 import { useAddBuyMutation } from '../../feature/buy/buy_api_slice'
+import { clearCar } from '../../feature/buy/buy_slice'
 
 type Props = {}
 
@@ -11,11 +12,14 @@ const initalState: Array<T.Product.Request> = []
 
 export const Cars = (props: Props) => {
 
+
   const buys = useAppSelector(state => state.buy)
 
   const [postBuy, resp] = useAddBuyMutation();
 
-  const { formState, onInputChange } = useForm({
+  const dispatch = useAppDispatch()
+
+  const { formState, onInputChange,onResetForm } = useForm({
     name: '',
     phone: '',
     address: '',
@@ -60,6 +64,8 @@ export const Cars = (props: Props) => {
 
     e.preventDefault()
 
+   
+
 
     let order: Array<{}> = []
 
@@ -73,17 +79,6 @@ export const Cars = (props: Props) => {
       }
 
       order.push(newPro)
-
-
-
-
-
-
-      console.log(newPro)
-
-
-
-
 
     })
 
@@ -101,6 +96,11 @@ export const Cars = (props: Props) => {
 
     if (name != '' && phone !== '') {
       postBuy(buy).unwrap
+      dispatch(clearCar())
+      setProducInfo([])
+      onResetForm()
+      total=0;
+      subtotal=0;
     }
 
 
@@ -112,13 +112,13 @@ export const Cars = (props: Props) => {
   return (
     <div>
       {
-        !producInfo.length && (<div>no tienes productos en tu carrito de compras</div>)
+        !producInfo.length && (<div className='p-4  bg-red-50   flex justify-center items-center gap-3'><ExclamationCircleIcon className='text-red-500 text-sm font-semibold w-6 h-6'/><p className='text-red-500 text-sm font-semibold'>Aun no tienes productos en tu carrito de compras</p> </div>)
       }
 
       <div className='lg:grid lg:grid-cols-2'>
         <div className='overflow-x-scroll scrollbar-hide  lg:overscroll-none snap-x lg:snap-none lg:grid lg:grid-cols-2 flex justify-around  lg:flex-col shrink-0'>
           {
-            producInfo.length && producInfo.map(p => (
+            producInfo.length ? producInfo.map(p => (
               <div key={p.id} className="">
                 <div className='lg:flex  mx-4 p-2 my-4 gap-8  lg:w-full w-28 '>
                   <div className=' shadow-sm mb-3 bg-gray-100 lg:rounded-xl rounded-full'>
@@ -129,18 +129,19 @@ export const Cars = (props: Props) => {
                     <p className='text-sm text-gray-500'>{p.description}</p>
                     <div className='flex justify-between'>
                       <div>{p.price}</div>
-                      <div>{buys.filter(id => id === p.id).length}</div>
+                      <div>{ buys.filter(id => id === p.id).length}</div>
                     </div>
                   </div>
                 </div>
               </div>
             ))
+            :''
           }
         </div>
 
 
         {
-          producInfo.length && (
+          producInfo.length ? (
             <form onSubmit={handleBuy} className="pb-16">
               <div className='lg:px-16 lg:my-5'>
                 <div className='m-4 shadow-lg px-5 py-2  rounded-lg'>
@@ -200,6 +201,7 @@ export const Cars = (props: Props) => {
               </div>
             </form>
           )
+          :''
         }
 
       </div>
@@ -211,16 +213,4 @@ export const Cars = (props: Props) => {
   )
 }
 
-// font-family: inherit;
-// font-size: 20px;
-// background: royalblue;
-// color: white;
-// padding: 0.7em 1em;
-// padding-left: 0.9em;
-// display: flex;
-// align-items: center;
-// border: none;
-// border-radius: 16px;
-// overflow: hidden;
-// transition: all 0.2s;
 

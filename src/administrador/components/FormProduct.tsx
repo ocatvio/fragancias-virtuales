@@ -17,12 +17,13 @@ export const FormProduct = (props: Props) => {
     name:'',
     price:'',
     description:'',
-    category:''
   })
+
+  const [category,setCategory]=useState('')
 
   const [postProduct,result]=useAddProductMutation()
 
-  const {name,price,description,category} = formState
+  const {name,price,description} = formState
 
 
   const handleImage= (e:React.ChangeEvent<HTMLInputElement>) => {
@@ -53,6 +54,8 @@ export const FormProduct = (props: Props) => {
 
   }
 
+
+
   return (
 
 
@@ -76,7 +79,12 @@ export const FormProduct = (props: Props) => {
 
       <div className='flex items-center w-full rounded-xl dark:bg-white py-3 px-2 shadow-sm my-3'>
         {/* <label htmlFor='search'><UserIcon className='w-5 h-5 mr-4 text-gray-700'></UserIcon></label> */}
-        <input name='category' value={category} onChange={onInputChange} id='search' type="textarea" placeholder='categoria' className='text-sm capitalize text-gray-700 w-full outline-none' />
+        {/* <input name='category' value={category} onChange={onInputChange} id='search' type="textarea" placeholder='categoria' className='text-sm capitalize text-gray-700 w-full outline-none' /> */}
+        <select className='text-sm capitalize text-gray-700 w-full outline-none' onChange={(e)=> setCategory(e.target.value)} value={category} name="category" id="">
+          <option selected  disabled value=""  > elegir una categoria</option>
+          <option value="Mujer">Mujer</option>
+          <option value="Hombre">Hombre</option>
+        </select>
       </div>
 
       <div className='flex items-center w-full rounded-xl dark:bg-white py-3 px-2 shadow-sm my-3'>
