@@ -141,7 +141,7 @@ export const Cars = (props: Props) => {
 
         {
           producInfo.length && (
-            <form onSubmit={handleBuy}>
+            <form onSubmit={handleBuy} className="pb-16">
               <div className='lg:px-16 lg:my-5'>
                 <div className='m-4 shadow-lg px-5 py-2  rounded-lg'>
 
