@@ -8,12 +8,15 @@ import * as T from '../../types/index'
 
 import { useDeleteUserMutation,useDeleteProductMutation } from "../../feature";
 import { ThTable } from "./ThTable";
+import {  useNavigate } from "react-router-dom";
 
 type Props = {
     info: any
 }
 
 const ItemTable = (props: Props) => {
+
+    const navigate=useNavigate()
 
     const { info } = props
 
@@ -27,6 +30,12 @@ const ItemTable = (props: Props) => {
 
         info.category ? delProduct(info.id) :delUsuer(info.id)
 
+    }
+
+    const handleEdit=() => {
+        navigate(`/editProduct/${info.id}`,{
+            replace:true
+        })
     }
 
 
@@ -73,7 +82,7 @@ const ItemTable = (props: Props) => {
                         <button onClick={handleDelete}>
                             <TrashIcon className="w-6 h-6 text-red-600" />
                         </button>
-                        <button>
+                        <button onClick={handleEdit}>
                             <PencilSquareIcon className="w-6 h-6 text-sky-600" />
                         </button>
                         <button>

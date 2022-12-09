@@ -15,15 +15,14 @@ export const useForm = (props: Props) => {
   
    const [formState,setFormState]= useState(props)
 
-   const onInputChange =(e:React.ChangeEvent<HTMLInputElement>)=>{
+   const onInputChange =(e:React.ChangeEvent<HTMLInputElement> )=>{
 
-    console.log(e.target.name)
 
     const {name,value} = e.target
 
     console.log({[name]:value})
 
-    setFormState({...formState,  [name]:value})
+    setFormState({...formState,[name]:value})
    }
 
    const onResetForm = () => {

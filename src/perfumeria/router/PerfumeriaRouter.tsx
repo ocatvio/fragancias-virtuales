@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { Sidebar } from '../../administrador/components/Sidebar'
 import { Dashboard } from '../../administrador/pages/Dashboard'
@@ -23,20 +23,14 @@ export const PerfumeriaRouter = (props: Props) => {
 
     const auth = useAppSelector(state => state.auth)
 
-    console.log("ruta privada", auth.length)
+  
 
-    const logged = auth.map(user => user.logged)
-
+    const {logged,user} = auth
 
     return (
         <>
-
-            {/* admin */}
-
-
-            {/* user */}
             {
-                auth.length !== 0
+                logged
                     ?
                     <div className='lg:flex'>
                         <Sidebar />
@@ -49,6 +43,9 @@ export const PerfumeriaRouter = (props: Props) => {
                             <Route path="/deudores" element={<Settings />} />
 
                             <Route path="/addProduct" element={<ProductPage />} />
+                            <Route path="/editProduct/:id" element={<ProductPage />} />
+                            <Route path="/detail/:id" element={<Detail />} />
+                            
                             <Route path="/addUser" element={<UserRegisterPage />} />
                             <Route path="/addDeuda" element={<DeudaRegisterPage />} />
                             {/* <Route path="/product" element={<Detail />} /> */}
@@ -64,7 +61,7 @@ export const PerfumeriaRouter = (props: Props) => {
                             <Route path="/login" element={<LoginPage />} />
                             <Route path="/checkout" element={<Cars />} />
                             <Route path="/detail/:id" element={<Detail />} />
-                            <Route path="/" element={<Navigate to="/" />} />
+                             {/* <Route path="/" element={<Navigate to="/" />} />  */}
                         </Routes>
                         <Footer />
                     </div>

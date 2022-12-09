@@ -1,4 +1,4 @@
-import {configureStore, ThunkMiddleware } from '@reduxjs/toolkit';
+import {configureStore } from '@reduxjs/toolkit';
 
 import {apiSliceUser,apiSliceProduct,apiSliceBuy} from '../feature/index';
 import buyReduccer from '../feature/buy/buy_slice';

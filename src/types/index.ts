@@ -24,6 +24,7 @@ export namespace Product {
 export namespace User {
 
     export interface Request {
+        privilage:string,
         id: string,
         name: string,
         phone: string,

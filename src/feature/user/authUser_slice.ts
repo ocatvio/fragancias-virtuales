@@ -4,24 +4,40 @@ import * as T from '../../types/index'
 
 interface auth {
   user:T.User.Request,
-  logged:false,
+  logged:boolean,
   
 }
 
-const initialState:Array<auth>=[]
+const initialState:auth={
+  user:{
+    privilage:"invitado",
+    name:'',
+    address:0,
+    email:'',
+    id:'',
+    phone:'',
+    image:{
+      public_id:'',
+      secure_url:''
+    }
+  },
+  logged:false
+}
 
 export const authSlice = createSlice(
     {
        name:'auth',
        initialState,
        reducers:{
-        login(state,action:PayloadAction<auth>){
+        login(state,action:PayloadAction<T.User.Request>){
 
-            console.log("en el starage",action.payload)
-          state.push(action.payload)
+         
+          state.user=action.payload
+          state.logged=true
         },
         logout:(state)=>{
-            state.splice(0,state.length)
+            state.logged=false
+            state.user = initialState.user
         }
        }
     }

@@ -9,7 +9,7 @@ export const apiSliceProduct = createApi({
     reducerPath: "api_product",
     tagTypes: ['Products'],
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://back-perfumeria-production-23ad.up.railway.app",
+        baseUrl: "http://localhost:3000",
     }),
     endpoints: (builder) => ({
 
@@ -35,6 +35,14 @@ export const apiSliceProduct = createApi({
                 body:newProduct
             }),invalidatesTags: ["Products"]
         }),
+        updateProduct: builder.mutation({
+            query:(newProduct)=> ({
+                
+                url:`/product/${newProduct.id}`,
+                method:"PUT",
+                body:newProduct.formData
+            })
+        }),
         deleteProduct: builder.mutation({
             
             query: (id) => ({
@@ -54,5 +62,6 @@ export const {
     useGetProductQuery,
     useGetProductByIdQuery,
     useAddProductMutation,
-    useDeleteProductMutation
+    useDeleteProductMutation,
+    useUpdateProductMutation
 } = apiSliceProduct

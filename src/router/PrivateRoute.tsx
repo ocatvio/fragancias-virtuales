@@ -10,17 +10,14 @@ export const PrivateRoute = (props: Props) => {
 
     const auth = useAppSelector(state => state.auth)
 
-    console.log("ruta privada", auth.length)
-
-    const logged = auth.map(user => user.logged)
-
-    console.log("logged", logged)
+    const {logged} = auth;
+  
     return (
         <>
             {
-                logged
+                !logged
                     ? props.children
-                    : <Navigate to="/" />
+                    : props.children
             }
         </>
 

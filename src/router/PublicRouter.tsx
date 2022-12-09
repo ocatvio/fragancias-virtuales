@@ -11,14 +11,14 @@ export const PublicRouter = (props:Props) => {
 
     const auth =  useAppSelector(state =>  state.auth)
 
-   
+    const {logged} = auth
     
     return (
         <>
             {
-                auth.length !==0
+                logged
                     ? <Navigate to="/dashboard" />
-                    : props.children
+                    :   props.children
             }
         </>
     )
