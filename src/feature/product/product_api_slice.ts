@@ -9,7 +9,7 @@ export const apiSliceProduct = createApi({
     reducerPath: "api_product",
     tagTypes: ['Products'],
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:3000",
+        baseUrl: "https://back-perfumeria-production.up.railway.app",
     }),
     endpoints: (builder) => ({
 

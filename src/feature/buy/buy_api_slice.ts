@@ -6,7 +6,7 @@ export const apiSliceBuy = createApi({
     reducerPath: "api_buy",
     tagTypes: ['Buys'],
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://back-perfumeria-production-23ad.up.railway.app",
+        baseUrl: "https://back-perfumeria-production.up.railway.app",
     }),
     endpoints: (builder) => ({
         getBuy: builder.query<T.Product.Response, number | void>({

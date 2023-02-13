@@ -3,17 +3,12 @@ import { ShoppingCartIcon, EllipsisVerticalIcon } from '@heroicons/react/24/outl
 
 import { useAppDispatch,useAppSelector } from '../../app/hooks';
 import { addCar } from '../../feature/buy/buy_slice';
+import * as T from '../../types/index';
 
-type Props = {
-    id: string
-    name: string,
-    description: string,
-    price: Number,
-    image: {
-        public_id: string,
-        secure_url: string
-    }
-}
+
+
+
+
 
 interface buy {
     id:string
@@ -21,11 +16,14 @@ interface buy {
 
 
 
-export const Product = (props: Props) => {
+export const Product = (props:T.Product.Request) => {
 
 
 
     const dispatch = useAppDispatch()
+
+
+
 
 
     const handleAddCar = () => {
@@ -36,7 +34,7 @@ export const Product = (props: Props) => {
     return (
         <div className="w-60 py-4 p-5 rounded-md">
             <div className="bg-slate-100 relative  pb-1 px-1 rounded-t-md shadow-lg">
-                <img className=' rounded-md w-60 h-48 object-center object-cover' src={props.image.secure_url} alt="" />
+                <img className=' rounded-md w-60 h-48 object-center object-cover' src={props.image?.secure_url} alt="image producto" />
             </div>
             <div className='rounded-b-md '>
                 <div className='flex justify-between items-center'>

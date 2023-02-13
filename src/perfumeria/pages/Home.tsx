@@ -59,7 +59,10 @@ export const Home = (props: Props) => {
                                 <div className='flex  -mx-5 shadow-md overflow-x-scroll snap-x scrollbar-hide'>
                                     {products.filter(p => p.category === c).map(p => (
                                         <div key={p.id} className=" m-2 shadow-xl rounded-lg snap-start">
-                                            <Product {...p} />
+                                    
+                                            <Product {
+                                                ...p
+                                            } />
                                         </div>
                                     ))}
                                 </div>

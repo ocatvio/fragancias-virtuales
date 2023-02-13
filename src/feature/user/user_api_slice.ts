@@ -9,25 +9,25 @@ export const apiSliceUser = createApi({
     reducerPath: "api_user",
     tagTypes: ['Users'],
     baseQuery: fetchBaseQuery({
-        baseUrl: "https://back-perfumeria-production-23ad.up.railway.app",
+        baseUrl: "https://back-perfumeria-production.up.railway.app",
     }),
     endpoints: (builder) => ({
 
 
         getUser: builder.query<T.User.Response, number | void>({
             query() {
-                return '/User'
+                return '/user'
             }, providesTags: ["Users"]
         },),
         getUserById: builder.query<T.User.Response, string | void>({
 
             query(id) {
-                return `/User/${id}`
+                return `/user/${id}`
             }
         }),
         addUser: builder.mutation({
             query: (newUser) => ({
-                url: "user",
+                url: "/User",
                 method: "post",
                 body: newUser
             }),

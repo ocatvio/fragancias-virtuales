@@ -7,7 +7,7 @@ import { useGetProductQuery } from "../../feature";
 import { ThTable } from "../components/ThTable";
 
 
-const thead = ['nombre','descripción','precio','categoria','stock','estado']
+const thead = ['nombre','precio','categoria','stock','estado']
 
 export const Product = () => {
 
@@ -16,7 +16,7 @@ const {data}=useGetProductQuery()
 
 const tbody = data?.allProducts.map(p => {
   return <>
-  <ThTable item={p.description}/>
+  {/* <ThTable item={p.description}/> */}
   <ThTable item={p.price.toString()}/>
   <ThTable item={p.category}/>
   </>

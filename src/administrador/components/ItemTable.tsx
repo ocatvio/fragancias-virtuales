@@ -45,7 +45,7 @@ const ItemTable = (props: Props) => {
                 <th className="flex gap-2 items-center   align-middle font-light text-sm whitespace-nowrap px-2 py-4 text-left">
 
                     <div className="w-10 h-10 rounded-full ">
-                        <img className="rounded-full w-10 h-10 object-cover" src={info.image.secure_url?info.image.secure_url:'no-image'} alt="..." />
+                        <img className="rounded-full w-10 h-10 object-cover" src={info.image.secure_url?info.image?.secure_url:'no-image'} alt="..." />
                     </div>
                     <div>
                         {info.name}
@@ -57,7 +57,7 @@ const ItemTable = (props: Props) => {
                     info.category
                         ?
                         <>
-                            <ThTable item={info.description} />
+                            {/* <ThTable item={info.description} /> */}
                             <ThTable item={info.price.toString()} />
                             <ThTable item={info.category} />
                             <ThTable item={'20'} />
